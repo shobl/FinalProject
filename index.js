@@ -23,12 +23,50 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function(forecastDay, index) {
+    if (index < 6) {
+      forecastHTML = forecastHTML + `
+       
+        <div class="col-2">
+          <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+          <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="42" />
+          <div class="weather-forecast-temperatures">
+            <span class="weather-forecast-temperature-max">
+            ${Math.round(forecastDay.temp.max)}°
+            </span>
+            <span class="weather-forecast-temperature-min">
+            ${Math.round(forecastDay.temp.min)}°
+            </span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    `;
+    }
+  })
+  forecastHTML = forecastHTML + `</div>`
+  forecastElement.innerHTML = forecastHTML;
+}
+
+
 function search(event) {
   event.preventDefault();
   let newCity = document.querySelector("#city");
   let cityRequest = document.querySelector("#city-request");
   newCity.innerHTML = cityRequest.value;
   
+}
+
+function getForecast(coordinates) {
+  let apiKey = "91e4be9d3f0ce62462b88df7804804ae";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
    
 function displayWeatherCondition(response) {
@@ -44,6 +82,8 @@ function displayWeatherCondition(response) {
   let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute("src", ` http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -55,6 +95,12 @@ function searchCity(city) {
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-request").value;
+  searchCity(city);
+}
+
+function headCity(event) {
+  event.preventDefault();
+  let city = document.querySelector("cities").value;
   searchCity(city);
 }
 
@@ -100,6 +146,9 @@ dateElement.innerHTML = formatDate(currentTime);
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
+
+let chooseCity = document.querySelector("#city-head"); 
+chooseCity.addEventListener("click", headCity);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);

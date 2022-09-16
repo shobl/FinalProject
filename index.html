@@ -19,24 +19,30 @@
     <div class="container">
         <div class="weather-up-wrapper"> 
           <div class="weather-up"> 
-            
-            <div class="cities">
+
+            <div class="container header-flex">
+              <div class="cities">
                 <div class="row">
                   <div class="col-2">
-                    Kyiv
+                    <a href="#" id="city-head">Kyiv</a>
+                    
                   </div>
                   <div class="col-2">
-                    Kharkiv
+                    <a href="#" id="city-head">Kharkiv</a>
+                    
                   </div>
                   <div class="col-2">
-                    Mariupol
+                    <a href="#" id="city-head">Mariupol</a>
+                    
                   </div>
                   <div class="col-2">
-                    Kherson
+                    <a href="#" id="city-head">Kherson</a>
+                    
                   </div>
                   
                 </div>
-            </div>
+              </div>
+            </div>  
 
 
             <form class="weather-search-form" id="search-form">
@@ -73,11 +79,13 @@
         <div class="col-6">
             <div class="clearfix weather-temperature">
                 <div class="float-left">
+                  <span class="one-line">
                     <img src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/043/495/original/partly_cloudy.png?1660406040" 
                     alt="cloudy icon" 
                     class="weather-icon" id="weather-icon" 
                     />
                     <span class="temperature" id="temperature">21</span>
+                  </span>
                     <span class="units">
                      <a href="#" id="celsius-recalculation" class="active">°C</a> 
                      |
@@ -99,7 +107,7 @@
     </div>
 
     
-      <div class="container-week" id="weather-forecast">
+      <div class="container-week">
         <div class="row">
           <div class="col">
             Tue
@@ -164,7 +172,24 @@
         
       
     </div>
-    
+
+    <div class="weather-forecast" id="forecast">
+      <div class="row">
+        <div class="col-2">
+          <div class="weather-forecast-date">Thu</div>
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
+          <div class="weather-forecast-temperatures">
+            <span class="weather-forecast-temperature-max">
+              18°
+            </span>
+            <span class="weather-forecast-temperature-min">
+              12°
+            </span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
 
 
 

@@ -30,6 +30,9 @@ p {
 
 }
 
+a {
+    text-decoration: none;
+}
 
 .weather-up-wrapper {
     margin: 20px auto;
@@ -86,3 +89,35 @@ p {
      text-decoration: none;
 }
  
+.weather-forecast {
+    margin-top: 20px;
+    text-align: center;
+    color: #000;
+}
+w
+.weather-forecast-date {
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+.weather-forecast-temperature-min {
+    opacity: 0.5;
+}
+
+.weather-forecast-temperatures {
+    font-size: 13px;
+}
+.one-line {
+    align-items: center;
+}
+.city-head {
+    text-decoration: none;
+    margin: 10px 20px 10px 20px;
+}
+
+ .header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+}
