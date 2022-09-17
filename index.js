@@ -32,44 +32,93 @@ function formatDay(timestamp) {
   return days[day];
 
 }
+function displayFor() {
+  let forElement = document.querySelector("#forecast");
+  let forHTML = `<div class="row">`;
+
+  forHTML = 
+  forHTML + 
+  `
+    <div class="row">
+      <div class="col-2">
+        <div class="weather-forecast-date">Thu</div>
+                  <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
+        <div class="weather-forecast-temperatures">
+                    <span class="weather-forecast-temperature-max">
+                      18°
+                    </span>
+                    <span class="weather-forecast-temperature-min">
+                      12°
+                    </span>
+        </div>
+                 
+      </div>
+              
+    
+  `;
+  forHTML = 
+  forHTML + 
+  `
+     
+      <div class="col-2">
+        <div class="weather-forecast-date">Thu</div>
+                  <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
+        <div class="weather-forecast-temperatures">
+                    <span class="weather-forecast-temperature-max">
+                      18°
+                    </span>
+                    <span class="weather-forecast-temperature-min">
+                      12°
+                    </span>
+        </div>
+                 
+      </div>
+              
+    
+  `;
+  forHTML = forHTML + `</div>`;
+  forElement.innerHTML = forHTML;
+}
 
 function displayForecast(response) {
   let forecast = response.data.daily;
 
   let forecastElement = document.querySelector("#forecast");
   
-  let forecastHTML = `<div class="row">`;
+  let forecastHTML = `<div class="row">`; 
+  
   forecast.forEach(function(forecastDay, index) {
     if (index < 6) {
-      forecastHTML = forecastHTML + `
-    <div class="col-2">
-      <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
-          <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="42" />
-      <div class="weather-forecast-temperatures">
-            <span class="weather-forecast-temperature-max">
-            ${Math.round(forecastDay.temp.max)}°
-            </span>
-            <span class="weather-forecast-temperature-min">
-            ${Math.round(forecastDay.temp.min)}°
-            </span>
+    forecastHTML = forecastHTML + `
+      <div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+            <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="42" />
+        <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">
+              ${Math.round(forecastDay.temp.max)}°
+                </span>
+                <span class="weather-forecast-temperature-min">
+              ${Math.round(forecastDay.temp.min)}°
+                </span>
+              
+            
+        </div>
           
-        
       </div>
-      
-    </div>
 
     `;
-    }
+   }
   });
-  forecastHTML = forecastHTML + `</div>`
-  forecastElement.innerHTML = forecastHTML;
+ forecastHTML = forecastHTML + `</div>`
+ forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
-  let apiKey = "91e4be9d3f0ce62462b88df7804804ae";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+ let apiKey = "91e4be9d3f0ce62462b88df7804804ae";
+ let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+ axios.get(apiUrl).then(displayForecast);
 }
+
 
 function search(event) {
   event.preventDefault();
@@ -122,7 +171,7 @@ function displayWeatherCondition(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
-  getForecast(response.data.coord);
+ getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -201,3 +250,6 @@ let celsiusLink = document.querySelector("#celsius-recalculation");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 searchCity("Kyiv");
+
+displayFor();
+ 
