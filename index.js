@@ -32,7 +32,8 @@ function formatDay(timestamp) {
   return days[day];
 
 }
-function displayFor() {
+function displayFor(response) {
+  console.log(response.data.daily);
   let forElement = document.querySelector("#forecast");
 
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
@@ -250,6 +251,5 @@ celsiusLink.addEventListener("click", convertToCelsius);
 
 searchCity("Kyiv");
 
-displayFor();
-
+ 
  
