@@ -34,48 +34,35 @@ function formatDay(timestamp) {
 }
 function displayFor() {
   let forElement = document.querySelector("#forecast");
+
   let forHTML = `<div class="row">`;
 
-  forHTML = 
-  forHTML + 
-  `
-    <div class="row">
-      <div class="col-2">
-        <div class="weather-forecast-date">Thu</div>
-                  <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
-        <div class="weather-forecast-temperatures">
-                    <span class="weather-forecast-temperature-max">
-                      18°
-                    </span>
-                    <span class="weather-forecast-temperature-min">
-                      12°
-                    </span>
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  days.forEach(function(day) {
+    forHTML = 
+    forHTML + 
+    `
+      
+        <div class="col-2">
+          <div class="weather-forecast-date">Thu</div>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
+          <div class="weather-forecast-temperatures">
+                      <span class="weather-forecast-temperature-max">
+                        18°
+                      </span>
+                      <span class="weather-forecast-temperature-min">
+                        12°
+                      </span>
+          </div>
+                   
         </div>
-                 
-      </div>
-              
+                
+      
+    `;
     
-  `;
-  forHTML = 
-  forHTML + 
-  `
-     
-      <div class="col-2">
-        <div class="weather-forecast-date">Thu</div>
-                  <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
-        <div class="weather-forecast-temperatures">
-                    <span class="weather-forecast-temperature-max">
-                      18°
-                    </span>
-                    <span class="weather-forecast-temperature-min">
-                      12°
-                    </span>
-        </div>
-                 
-      </div>
-              
-    
-  `;
+  })
+
+  
   forHTML = forHTML + `</div>`;
   forElement.innerHTML = forHTML;
 }
