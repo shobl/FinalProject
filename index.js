@@ -32,28 +32,29 @@ function formatDay(timestamp) {
   return days[day];
 
 }
-function displayFor(response) {
-  console.log(response.data.daily);
-  let forElement = document.querySelector("#forecast");
 
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+function displayFore(response) {
+  let fore = response.data.daily;
 
-  let forHTML = `<div class="row">`;
+  let foreElement = document.querySelector("#forecast");
 
-  days.forEach(function(day) {
-    forHTML = 
-    forHTML + 
+  let foreHTML = `<div class="row">`;
+
+  fore.forEach(function (foreDay, index) {
+    if (index < 6) {
+    foreHTML = 
+    foreHTML + 
     `
       
         <div class="col-2">
-          <div class="weather-forecast-date">${day}</div>
-                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
+          <div class="weather-forecast-date">${formatDay(foreDay.dt)}</div>
+                    <img src="http://openweathermap.org/img/wn/${foreDay.weather[0].icon}@2x.png" alt="" width="42" />
           <div class="weather-forecast-temperatures">
                       <span class="weather-forecast-temperature-max">
-                        18°
+                      ${Math.round(foreDay.temp.max)}°
                       </span>
                       <span class="weather-forecast-temperature-min">
-                        12°
+                      ${Math.round(foreDay.temp.min)}°
                       </span>
           </div>
                    
@@ -61,21 +62,21 @@ function displayFor(response) {
                 
       
     `;
-    
+    } 
   })
 
   
-  forHTML = forHTML + `</div>`;
-  forElement.innerHTML = forHTML;
+  foreHTML = foreHTML + `</div>`;
+  foreElement.innerHTML = foreHTML;
    
 }
 
-function getFor(coordinates) {
+function getFore(coordinates) {
   console.log(coordinates);
   let apiKey = "91e4be9d3f0ce62462b88df7804804ae";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   console.log(apiUrl);
-  axios.get(apiUrl).then(displayFor);
+  axios.get(apiUrl).then(displayFore);
 
 }
 
@@ -171,7 +172,7 @@ function displayWeatherCondition(response) {
   //iconElement.setAttribute("alt", response.data.weather[0].description);
 
  //getForecast(response.data.coord);
- getFor(response.data.coord);
+ getFore(response.data.coord);
 }
 
 function searchCity(city) {
