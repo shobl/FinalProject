@@ -35,16 +35,17 @@ function formatDay(timestamp) {
 function displayFor() {
   let forElement = document.querySelector("#forecast");
 
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+
   let forHTML = `<div class="row">`;
 
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
   days.forEach(function(day) {
     forHTML = 
     forHTML + 
     `
       
         <div class="col-2">
-          <div class="weather-forecast-date">Thu</div>
+          <div class="weather-forecast-date">${day}</div>
                     <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
           <div class="weather-forecast-temperatures">
                       <span class="weather-forecast-temperature-max">
@@ -65,6 +66,16 @@ function displayFor() {
   
   forHTML = forHTML + `</div>`;
   forElement.innerHTML = forHTML;
+   
+}
+
+function getFor(coordinates) {
+  console.log(coordinates);
+  let apiKey = "91e4be9d3f0ce62462b88df7804804ae";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayFor);
+
 }
 
 function displayForecast(response) {
@@ -152,13 +163,14 @@ function displayWeatherCondition(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
+  //iconElement.setAttribute(
+  //  "src",
+  //  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  //);
+  //iconElement.setAttribute("alt", response.data.weather[0].description);
 
- getForecast(response.data.coord);
+ //getForecast(response.data.coord);
+ getFor(response.data.coord);
 }
 
 function searchCity(city) {
@@ -239,4 +251,5 @@ celsiusLink.addEventListener("click", convertToCelsius);
 searchCity("Kyiv");
 
 displayFor();
+
  
