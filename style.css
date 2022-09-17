@@ -110,14 +110,14 @@ w
 .one-line {
     align-items: center;
 }
-.city-head {
+/*.city-head {
     text-decoration: none;
     margin: 10px 20px 10px 20px;
 }
 
- .header-flex {
+/*.header-flex {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
 
-}
+}*/
