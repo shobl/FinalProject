@@ -23,7 +23,7 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast(response) {
+/*function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
@@ -53,7 +53,7 @@ function displayForecast(response) {
   forecastHTML = forecastHTML + `</div>`
   forecastElement.innerHTML = forecastHTML;
 }
-
+*/
 
 function search(event) {
   event.preventDefault();
@@ -83,7 +83,7 @@ function displayWeatherCondition(response) {
   iconElement.setAttribute("src", ` http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
-  getForecast(response.data.coord);
+  /*getForecast(response.data.coord);*/
 }
 
 function searchCity(city) {
@@ -98,11 +98,12 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-function headCity(event) {
+/*function headCity(event) {
   event.preventDefault();
   let city = document.querySelector("cities").value;
   searchCity(city);
 }
+*/
 
 function searchLocation(position) {
   let apiKey = "91e4be9d3f0ce62462b88df7804804ae";
@@ -147,8 +148,8 @@ dateElement.innerHTML = formatDate(currentTime);
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-let chooseCity = document.querySelector("#city-head"); 
-chooseCity.addEventListener("click", headCity);
+/*let chooseCity = document.querySelector("#city-head"); 
+chooseCity.addEventListener("click", headCity);*/
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
