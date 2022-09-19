@@ -125,7 +125,7 @@ function search(event) {
   let newCity = document.querySelector("#city");
   let cityRequest = document.querySelector("#city-request");
   newCity.innerHTML = cityRequest.value;
-  
+
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 }
@@ -181,12 +181,18 @@ function searchCity(city) {
   let apiKey = "91e4be9d3f0ce62462b88df7804804ae";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-request").value;
   searchCity(city);
+  
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 
 /*function headCity(event) {
