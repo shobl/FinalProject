@@ -126,6 +126,8 @@ function search(event) {
   let cityRequest = document.querySelector("#city-request");
   newCity.innerHTML = cityRequest.value;
   
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 
 
