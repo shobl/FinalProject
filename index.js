@@ -175,6 +175,9 @@ function displayWeatherCondition(response) {
 
  //getForecast(response.data.coord);
  getFore(response.data.coord);
+ 
+ celsiusLink.classList.add("active");
+ fahrenheitLink.classList.remove("active");
 }
 
 function searchCity(city) {
@@ -190,7 +193,7 @@ function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-request").value;
   searchCity(city);
-  
+
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 }
