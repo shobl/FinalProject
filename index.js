@@ -229,6 +229,7 @@ function convertToCelsius(event) {
 }
 
 let celsiusTemperature = null;
+let fahrenheitTempera = null;
 
 let dateElement = document.querySelector("#date");
 let currentTime = new Date();
